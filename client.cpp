@@ -9,27 +9,30 @@
 #include <iostream>
 
 using namespace std;
-    #define SIM_LENGTH 10
-    #define IP_ADDRESS "10.161.165.218"
-    #define PORT 1897
+    #define SIM_LENGTH 10                    // number of integers to be written and read 
+    #define IP_ADDRESS "10.161.165.218"      // Internet address of server 
+    #define PORT 1897                        // local port on which the server establishes connection 
 
 int main (){
-int sock;
+int sock;          /* socket file descriptor */
+
 struct sockaddr_in cli_name;
 int count;
-int value;
+int value;      /* variable for number read from socket */
   cout<<"Client is alive and establishing socket connection.";
      
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0){
         perror ("Error opening channel");
          close(sock);
-          exit(1);
+          exit(1);  
     }
-    bzero(&cli_name, sizeof(cli_name));
-    cli_name.sin_family = AF_INET;
-    cli_name.sin_addr.s_addr = inet_addr(IP_ADDRESS);
-    cli_name.sin_port = htons(PORT);
+    bzero(&cli_name, sizeof(cli_name));  // initializes the address structure 
+    cli_name.sin_family = AF_INET;      // socket family will be AF_INET (Internet) 
+    cli_name.sin_addr.s_addr = inet_addr(IP_ADDRESS);   // sets the Internet  Protocol (IP) address of the server 
+
+    cli_name.sin_port = htons(PORT);   /* sets the port on which the server will
+				      establish the socket connection */
     
      if (connect(sock, (struct sockaddr *)&cli_name, sizeof(cli_name)) < 0)
     { perror ("Error establishing communications");
