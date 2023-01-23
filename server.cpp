@@ -49,7 +49,7 @@ int main (){
       cout<<"Server has written %d to socket." + count;
   
   
-  close(connect_sock);  
+  close(connect_sock);//close connection  
   clean_up(0, &sock);
   
   return 0;
