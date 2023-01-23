@@ -45,7 +45,7 @@ int value;      /* variable for number read from socket */
          
            cout<<"Exit";
 
-  close(sock);
+  close(sock);//close
   exit(0);
     }
 return 0;
